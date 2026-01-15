@@ -7,6 +7,7 @@ const { nodeEnv } = require('./secret');
 
 // Import routes
 const authRoutes = require('./routes/auth.routes');
+const folderRoutes = require("./routes/folder.routes");
 
 // Middlewares
 app.use(cookieParser());
@@ -25,8 +26,9 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'greetings' });
 });
 
-// Mount auth routes
+// routes
 app.use('/api/auth', authRoutes);
+app.use("/api/folders", folderRoutes);
 
 // Default error handler
 app.use((err, _req, res, _next) => {

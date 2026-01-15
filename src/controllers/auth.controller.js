@@ -110,7 +110,7 @@ exports.refreshToken = async (req, res) => {
     .cookie("accessToken", newAccessToken, {
       httpOnly: true,
       sameSite: "strict",
-      maxAge: 15 * 60 * 1000
+      maxAge: 60 * 60 * 1000 // 1 hour
     })
     .cookie("refreshToken", newRefreshToken, {
       httpOnly: true,

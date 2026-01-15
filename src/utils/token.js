@@ -3,7 +3,7 @@ const {
     accessToken,
     refreshToken
   } = require('../secret');
-const ACCESS_TOKEN_EXPIRES = "15m";
+const ACCESS_TOKEN_EXPIRES = "1h";
 const REFRESH_TOKEN_EXPIRES = "7d";
 
 exports.generateAccessToken = (user) => {
