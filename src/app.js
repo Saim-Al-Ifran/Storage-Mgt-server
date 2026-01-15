@@ -8,6 +8,7 @@ const { nodeEnv } = require('./secret');
 // Import routes
 const authRoutes = require('./routes/auth.routes');
 const folderRoutes = require("./routes/folder.routes");
+const fileRoutes =  require("./routes/note.routes");
 
 // Middlewares
 app.use(cookieParser());
@@ -29,6 +30,8 @@ app.get('/', (req, res) => {
 // routes
 app.use('/api/auth', authRoutes);
 app.use("/api/folders", folderRoutes);
+app.use("/api/notes",fileRoutes);
+
 
 // Default error handler
 app.use((err, _req, res, _next) => {
