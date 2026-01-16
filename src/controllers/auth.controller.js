@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const { generateAccessToken, generateRefreshToken } = require("../utils/token");
 const {refreshToken} = require('../secret');
+const jwt = require("jsonwebtoken");
 /* ================= REGISTER ================= */
 exports.register = async (req, res) => {
   const { email, password, name } = req.body;
@@ -67,16 +68,19 @@ exports.logout = async (req, res) => {
     .json({ message: "Logged out successfully" });
 };
 
-exports.refreshToken = async (req, res) => {
-  const refreshToken = req.cookies.refreshToken;
+/* ================= REFRESH TOKEN ================= */
+ 
 
-  if (!refreshToken) {
+exports.refreshToken = async (req, res) => {
+  const cookieRefreshToken = req.cookies.refreshToken;
+
+  if (!cookieRefreshToken) {
     return res.status(401).json({ message: "Refresh token missing" });
   }
 
   let decoded;
   try {
-    decoded = jwt.verify(refreshToken, refreshToken);
+    decoded = jwt.verify(cookieRefreshToken, refreshToken);
   } catch (err) {
     return res.status(401).json({ message: "Invalid refresh token" });
   }
@@ -88,16 +92,16 @@ exports.refreshToken = async (req, res) => {
 
   // Check token exists in DB
   const tokenExists = user.refreshTokens.find(
-    (t) => t.token === refreshToken
+    (t) => t.token === cookieRefreshToken
   );
 
   if (!tokenExists) {
     return res.status(401).json({ message: "Refresh token revoked" });
   }
 
-  // 🔁 Rotate refresh token
+  // Rotate refresh token
   user.refreshTokens = user.refreshTokens.filter(
-    (t) => t.token !== refreshToken
+    (t) => t.token !== cookieRefreshToken
   );
 
   const newAccessToken = generateAccessToken(user);
