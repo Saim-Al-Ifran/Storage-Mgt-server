@@ -8,8 +8,8 @@ const { nodeEnv } = require('./secret');
 // Import routes
 const authRoutes = require('./routes/auth.routes');
 const folderRoutes = require("./routes/folder.routes");
-const fileRoutes =  require("./routes/note.routes");
-
+const noteRoutes =  require("./routes/note.routes");
+const fileRoutes = require('./routes/file.routes');
 // Middlewares
 app.use(cookieParser());
 app.use(express.json());
@@ -27,10 +27,11 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'greetings' });
 });
 
-// routes
+// All routes
 app.use('/api/auth', authRoutes);
 app.use("/api/folders", folderRoutes);
-app.use("/api/notes",fileRoutes);
+app.use("/api/notes", noteRoutes);
+app.use('/api/files', fileRoutes);
 
 
 // Default error handler
