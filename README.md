@@ -117,9 +117,7 @@ This system supports secure file uploads, folder organization, favorites, soft d
 | CLOUDINARY_CLOUD_NAME  | xxxx                                         | Cloudinary cloud name                 |
 | CLOUDINARY_API_KEY     | xxxx                                         | Cloudinary API key                    |
 | CLOUDINARY_API_SECRET  | xxxx                                         | Cloudinary API secret                 |
-| CLOUDINARY_FOLDER      | app_uploads                                  | (Optional) Folder for uploads         |
-| RATE_LIMIT_WINDOW_MS   | 60000                                        | Rate limit window in ms               |
-| RATE_LIMIT_MAX         | 100                                          | Max requests per window               |
+
 
 ---
 
@@ -128,13 +126,6 @@ This system supports secure file uploads, folder organization, favorites, soft d
 ### Development Setup
 
 ```bash
-npm install
-npm run dev
-
-
-
----
-
 ## Running the Application
 
 Development:
