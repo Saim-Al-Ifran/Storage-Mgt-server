@@ -51,6 +51,18 @@ This system supports secure file uploads, folder organization, favorites, soft d
 
 ## API Endpoints
 
+### Auth & User Routes
+
+| Method | Endpoint          | Description                |
+|--------|-------------------|----------------------------|
+| POST   | /register         | Register a new user        |
+| POST   | /login            | Login and get access token |
+| POST   | /logout           | Logout (requires auth)     |
+| PATCH  | /change-password  | Change user password (auth)|
+| PATCH  | /profile          | Update user profile (auth) |
+| POST   | /refresh-token    | Refresh access token       |
+
+
 ### Files
 
 | Method | Endpoint | Description |
@@ -61,10 +73,14 @@ This system supports secure file uploads, folder organization, favorites, soft d
 | PATCH | /api/files/:id/move | Move file to another folder |
 | DELETE | /api/files/:id | Soft delete + Cloudinary destroy |
 
-#### File Filters
-GET /api/files?type=image
-GET /api/files?type=pdf
-GET /api/files
+### File Filters
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | /api/files?type=image | Get all image files |
+| GET    | /api/files?type=pdf   | Get all PDF files |
+| GET    | /api/files            | Get all files (unfiltered) |
+
 
 
 ---
@@ -92,12 +108,24 @@ GET /api/files
 ## Environment Variables
 
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/storage_db
-JWT_SECRET=your_jwt_secret
+NODE_ENV=development
 
+MONGO_URI=mongodb://localhost:27017/storage_db
+
+# JWT
+JWT_ACCESS_SECRET=your_access_secret
+JWT_REFRESH_SECRET=your_refresh_secret
+
+# Cloudinary
 CLOUDINARY_CLOUD_NAME=xxxx
 CLOUDINARY_API_KEY=xxxx
 CLOUDINARY_API_SECRET=xxxx
+
+# Optional
+CLOUDINARY_FOLDER=app_uploads
+RATE_LIMIT_WINDOW_MS=60000
+RATE_LIMIT_MAX=100
+
 
 ---
 
