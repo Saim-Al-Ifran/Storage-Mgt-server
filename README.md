@@ -107,24 +107,30 @@ This system supports secure file uploads, folder organization, favorites, soft d
 
 ## Environment Variables
 
-PORT=5000
-NODE_ENV=development
+| Variable               | Example Value                                | Description                          |
+|------------------------|----------------------------------------------|--------------------------------------|
+| PORT                   | 5000                                         | Port number for the server            |
+| NODE_ENV               | development                                  | Environment mode (development/production) |
+| MONGO_URI              | mongodb://localhost:27017/storage_db         | MongoDB connection string             |
+| JWT_ACCESS_SECRET      | your_access_secret                           | Secret key for JWT access tokens      |
+| JWT_REFRESH_SECRET     | your_refresh_secret                          | Secret key for JWT refresh tokens     |
+| CLOUDINARY_CLOUD_NAME  | xxxx                                         | Cloudinary cloud name                 |
+| CLOUDINARY_API_KEY     | xxxx                                         | Cloudinary API key                    |
+| CLOUDINARY_API_SECRET  | xxxx                                         | Cloudinary API secret                 |
+| CLOUDINARY_FOLDER      | app_uploads                                  | (Optional) Folder for uploads         |
+| RATE_LIMIT_WINDOW_MS   | 60000                                        | Rate limit window in ms               |
+| RATE_LIMIT_MAX         | 100                                          | Max requests per window               |
 
-MONGO_URI=mongodb://localhost:27017/storage_db
+---
 
-# JWT
-JWT_ACCESS_SECRET=your_access_secret
-JWT_REFRESH_SECRET=your_refresh_secret
+## Running the Application
 
-# Cloudinary
-CLOUDINARY_CLOUD_NAME=xxxx
-CLOUDINARY_API_KEY=xxxx
-CLOUDINARY_API_SECRET=xxxx
+### Development Setup
 
-# Optional
-CLOUDINARY_FOLDER=app_uploads
-RATE_LIMIT_WINDOW_MS=60000
-RATE_LIMIT_MAX=100
+```bash
+npm install
+npm run dev
+
 
 
 ---
@@ -135,7 +141,7 @@ Development:
 npm install
 npm run dev
 
-
+```
 ---
 
 ## Design Decisions
